@@ -32,7 +32,9 @@ class Carpenter:
             this.plot()
 
         # slope >1
-        this.h -= this.b*this.b*(4*this.x*this.x + 4*this.x + 1) + 4*this.a*this.a*(this.y - 1)*(this.y - 1) - 4*this.a*this.a*this.b*this.b
+        this.h -= this.b*this.b*(4*this.x*this.x + 4*this.x + 1) + \
+                  4*this.a*this.a*(this.y - 1)*(this.y - 1) - \
+                  4*this.a*this.a*this.b*this.b
         this.d1 = this.b2t8*(this.x + 1)
         this.d2 = -4*this.a*this.a*(2*this.y - 3)
         while(this.y > 1):
@@ -52,3 +54,4 @@ class Carpenter:
     def negResult(this):
         this.xNegResult = [-x for x in this.xResult]
         this.yNegResult = [-y for y in this.yResult]
+

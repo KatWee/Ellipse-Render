@@ -65,7 +65,7 @@ def main():
         # setup for drawing graph
         turtle.setup()
         turtle.penup()
-        translate(c,a)
+        turtle.hideturtle()
 
         # kennedy
         draw(k.xResult, k.yResult,"blue")
@@ -107,16 +107,6 @@ def printPoint(x, y):
     for i in range(len(x)):
         print('(',x[i],',',y[i],')',end = ' ')
 
-# translate to avoid intersection of graph
-def translate(c, a):
-    i = 0
-    t = a + 1 - min(c.xNegResult)
-    for i in range(len(c.xResult)):
-        tempx = c.xResult[i]
-        c.xResult[i] = tempx + t
-        tempnx = c.xNegResult[i]
-        c.xNegResult[i] = tempnx + t
-
 # draw graph
 def draw(x,y,color):
     i = 0
@@ -125,7 +115,7 @@ def draw(x,y,color):
         tempx = x[i] * 10
         tempy = y[i] * 10
         turtle.goto(tempx,tempy)
-        turtle.dot(10,color)
+        turtle.dot(8,color)
 
 if __name__ == "__main__":
     main()
