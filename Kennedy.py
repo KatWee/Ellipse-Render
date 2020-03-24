@@ -57,4 +57,3 @@ class Kennedy:
     def negResult(this):
         this.xNegResult = [-x for x in this.xResult]
         this.yNegResult = [-y for y in this.yResult]
-
