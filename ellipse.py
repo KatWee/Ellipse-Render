@@ -15,7 +15,7 @@ def main():
         print('Most right point is (0,',y+b,')')
 
         # translation to origin
-        x, y, tx, ty = trans(x, y)
+        x, y, tx, ty = transToOrigin(x, y)
 
         # kennedy
         k = Kennedy(a, b)
@@ -41,10 +41,10 @@ def main():
         print("quadrant 2") # (-x,y)
         printPoint(k.xNegResult, k.yResult)
         print("")
-        print("quadrant 3") #(-x,-y)
+        print("quadrant 3") # (-x,-y)
         printPoint(k.xNegResult, k.yNegResult)
         print("")
-        print("quadrant 4") #(x,-y)
+        print("quadrant 4") # (x,-y)
         printPoint(k.xResult, k.yNegResult)
         print("")
 
@@ -62,8 +62,11 @@ def main():
         printPoint(c.xResult, c.yNegResult)
         print("")
 
-        # draw graph
-        turtle.setup(400, 400)
+        # setup for drawing graph
+        turtle.setup()
+        turtle.penup()
+        translate(c,a)
+
         # kennedy
         draw(k.xResult, k.yResult,"blue")
         draw(k.xNegResult, k.yResult,"blue")
@@ -78,13 +81,15 @@ def main():
 
         turtle.done()
 
-def trans(x, y):
+# translate center point to origin
+def transToOrigin(x, y):
     tx = -x
     ty = -y
     x = x + tx
     y = y + ty
     return x, y, tx, ty
 
+# translate from origin to the center point
 def transback(x, y, tx, ty):
     i = 0
     j = 0
@@ -96,20 +101,31 @@ def transback(x, y, tx, ty):
         y[j] = temp - ty
     return x, y
 
-def printPoint(x,y):
+# show the result in (x,y) format
+def printPoint(x, y):
     i = 0
     for i in range(len(x)):
         print('(',x[i],',',y[i],')',end = ' ')
 
+# translate to avoid intersection of graph
+def translate(c, a):
+    i = 0
+    t = a + 1 - min(c.xNegResult)
+    for i in range(len(c.xResult)):
+        tempx = c.xResult[i]
+        c.xResult[i] = tempx + t
+        tempnx = c.xNegResult[i]
+        c.xNegResult[i] = tempnx + t
+
+# draw graph
 def draw(x,y,color):
     i = 0
     for i in range(len(x)):
+        # scaling the point
         tempx = x[i] * 10
         tempy = y[i] * 10
-        turtle.setpos(tempx,tempy)
+        turtle.goto(tempx,tempy)
         turtle.dot(10,color)
-        #turtle.setpos(x[i], y[i])
-        #turtle.dot(1,color)
 
 if __name__ == "__main__":
     main()
